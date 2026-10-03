@@ -1,0 +1,284 @@
+.group-page {
+  min-height: 100%;
+  padding: 24px;
+  background: #0a0c0c;
+}
+
+/* Card */
+
+.group-card {
+  background: #0f1212 !important;
+  border: 1px solid #1c2222 !important;
+  border-radius: 12px !important;
+}
+
+/* Header */
+
+.group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.group-title {
+  margin: 0 !important;
+  color: #ffffff !important;
+}
+
+.group-subtitle {
+  display: block;
+  margin-top: 5px;
+  color: #8b9494 !important;
+}
+
+/* Add button */
+
+.add-group-btn {
+  height: 40px;
+  border-radius: 7px;
+  font-weight: 500;
+}
+
+/* Toolbar */
+
+.group-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.group-search {
+  width: 300px;
+  height: 40px;
+
+  background: #0a0c0c !important;
+  border-color: #252c2c !important;
+  color: #ffffff !important;
+}
+
+.group-search input {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+.group-search input::placeholder {
+  color: #707878 !important;
+}
+
+.group-search .anticon {
+  color: #707878;
+}
+
+.group-search:hover,
+.group-search:focus,
+.group-search.ant-input-affix-wrapper-focused {
+  border-color: #1677ff !important;
+  box-shadow: none !important;
+}
+
+.group-count {
+  color: #8b9494 !important;
+}
+
+/* Table */
+
+.group-table .ant-table {
+  background: transparent !important;
+  color: #ffffff;
+}
+
+.group-table .ant-table-container {
+  border: 1px solid #1c2222;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Table header */
+
+.group-table .ant-table-thead > tr > th {
+  background: #151919 !important;
+  color: #aeb6b6 !important;
+  border-bottom: 1px solid #252c2c !important;
+  font-weight: 600;
+}
+
+/* Table body */
+
+.group-table .ant-table-tbody > tr > td {
+  background: #0f1212 !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid #1c2222 !important;
+}
+
+.group-table .ant-table-tbody > tr:hover > td {
+  background: #151919 !important;
+}
+
+/* ID */
+
+.group-id {
+  color: #7d8787;
+  font-size: 13px;
+}
+
+/* Group name */
+
+.group-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.group-icon {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: rgba(22, 119, 255, 0.1);
+  color: #1677ff;
+}
+
+.group-name {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* Time */
+
+.group-time {
+  color: #b8c0c0;
+  font-weight: 500;
+}
+
+/* Lesson days */
+
+.lesson-days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.lesson-day {
+  margin: 0 !important;
+
+  color: #aeb6b6 !important;
+  background: #171b1b !important;
+  border: 1px solid #252c2c !important;
+
+  border-radius: 5px;
+}
+
+/* Students */
+
+.students-count {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #aeb6b6;
+}
+
+.students-count .anticon {
+  color: #1677ff;
+}
+
+/* Status */
+
+.status-active {
+  color: #52c41a !important;
+  background: rgba(82, 196, 26, 0.1) !important;
+  border: 1px solid rgba(82, 196, 26, 0.25) !important;
+  border-radius: 5px;
+
+  padding: 3px 10px;
+}
+
+.status-inactive {
+  color: #ff4d4f !important;
+  background: rgba(255, 77, 79, 0.1) !important;
+  border: 1px solid rgba(255, 77, 79, 0.25) !important;
+  border-radius: 5px;
+
+  padding: 3px 10px;
+}
+
+/* Actions */
+
+.action-edit {
+  color: #1677ff !important;
+}
+
+.action-edit:hover {
+  background: rgba(22, 119, 255, 0.1) !important;
+}
+
+/* Pagination */
+
+.group-table .ant-pagination {
+  margin-bottom: 0 !important;
+}
+
+.group-table .ant-pagination-item {
+  background: #0f1212 !important;
+  border-color: #252c2c !important;
+}
+
+.group-table .ant-pagination-item a {
+  color: #aeb6b6 !important;
+}
+
+.group-table .ant-pagination-item-active {
+  border-color: #1677ff !important;
+}
+
+.group-table .ant-pagination-item-active a {
+  color: #1677ff !important;
+}
+
+.group-table .ant-pagination-prev button,
+.group-table .ant-pagination-next button {
+  color: #aeb6b6 !important;
+}
+
+/* Select */
+
+.group-table .ant-select-selector {
+  background: #0f1212 !important;
+  border-color: #252c2c !important;
+  color: #ffffff !important;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .group-page {
+    padding: 12px;
+  }
+
+  .group-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .group-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .group-search {
+    width: 100%;
+  }
+
+  .add-group-btn {
+    width: 100%;
+  }
+}

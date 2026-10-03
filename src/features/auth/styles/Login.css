@@ -1,0 +1,445 @@
+* {
+  box-sizing: border-box;
+}
+
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background: #0a0c0c;
+}
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.login-card {
+  width: 430px;
+
+  padding: 42px;
+
+  background: #111414;
+
+  border: 1px solid #292e2e;
+  border-radius: 18px;
+
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.login-logo {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 24px;
+
+  border-radius: 15px;
+
+  background: #191d1d;
+
+  border: 1px solid #303636;
+
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.login-header {
+  text-align: center;
+
+  margin-bottom: 34px;
+}
+
+.login-header h1 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.login-header p {
+  margin: 10px 0 0;
+
+  color: #737c7c;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.login-card .ant-form-item {
+  margin-bottom: 20px;
+}
+
+.login-card .ant-form-item-label {
+  padding-bottom: 7px;
+}
+
+.login-card .ant-form-item-label > label {
+  color: #d5dada !important;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* =========================
+   NORMAL INPUT
+========================= */
+
+.login-card .ant-input {
+  height: 48px !important;
+
+  padding: 0 14px !important;
+
+  background: #0d1010 !important;
+
+  border: 1px solid #292f2f !important;
+  border-radius: 9px !important;
+
+  color: #ffffff !important;
+
+  font-size: 14px;
+
+  box-shadow: none !important;
+}
+
+.login-card .ant-input::placeholder {
+  color: #555e5e !important;
+}
+
+.login-card .ant-input:hover {
+  border-color: #454d4d !important;
+}
+
+.login-card .ant-input:focus {
+  border-color: #697373 !important;
+
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.04) !important;
+}
+
+/* =========================
+   INPUT ICON
+========================= */
+
+.login-card .ant-input-prefix {
+  margin-right: 10px;
+
+  color: #697272 !important;
+}
+
+.login-card .ant-input-prefix .anticon {
+  font-size: 16px;
+}
+
+/* =========================
+   PASSWORD INPUT
+========================= */
+
+/*
+  MUHIM:
+  height faqat wrapperga beriladi.
+  Ichidagi .ant-input ga height berilmaydi.
+*/
+
+.login-card .ant-input-affix-wrapper {
+  display: flex !important;
+  align-items: center !important;
+
+  width: 100% !important;
+  height: 48px !important;
+  min-height: 48px !important;
+
+  padding: 0 13px !important;
+
+  background: #0d1010 !important;
+
+  border: 1px solid #292f2f !important;
+  border-radius: 9px !important;
+
+  box-shadow: none !important;
+}
+
+/* PASSWORD ICHIDAGI INPUT */
+
+.login-card
+  .ant-input-affix-wrapper
+  .ant-input {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+
+  padding: 0 !important;
+
+  background: transparent !important;
+
+  border: none !important;
+  border-radius: 0 !important;
+
+  color: #ffffff !important;
+
+  box-shadow: none !important;
+
+  outline: none !important;
+}
+
+/* PASSWORD PLACEHOLDER */
+
+.login-card
+  .ant-input-affix-wrapper
+  .ant-input::placeholder {
+  color: #555e5e !important;
+}
+
+/* PASSWORD HOVER */
+
+.login-card
+  .ant-input-affix-wrapper:hover {
+  border-color: #454d4d !important;
+}
+
+/* PASSWORD FOCUS */
+
+.login-card
+  .ant-input-affix-wrapper-focused {
+  border-color: #697373 !important;
+
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.04) !important;
+}
+
+/* PASSWORD PREFIX */
+
+.login-card
+  .ant-input-affix-wrapper
+  .ant-input-prefix {
+  margin-right: 10px;
+
+  color: #697272 !important;
+}
+
+/* PASSWORD EYE */
+
+.login-card
+  .ant-input-affix-wrapper
+  .ant-input-suffix {
+  margin-left: 8px;
+
+  color: #697272 !important;
+}
+
+.login-card
+  .ant-input-password-icon {
+  color: #697272 !important;
+
+  font-size: 16px;
+}
+
+.login-card
+  .ant-input-password-icon:hover {
+  color: #ffffff !important;
+}
+
+/* =========================
+   REMEMBER / FORGOT
+========================= */
+
+.login-options {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: -2px;
+  margin-bottom: 25px;
+}
+
+/* CHECKBOX */
+
+.login-card
+  .ant-checkbox-wrapper {
+  color: #777f7f !important;
+
+  font-size: 13px;
+}
+
+.login-card
+  .ant-checkbox-inner {
+  width: 15px;
+  height: 15px;
+
+  background: #0d1010 !important;
+
+  border-color: #3b4343 !important;
+
+  border-radius: 4px;
+}
+
+.login-card
+  .ant-checkbox-checked
+  .ant-checkbox-inner {
+  background: #ffffff !important;
+
+  border-color: #ffffff !important;
+}
+
+.login-card
+  .ant-checkbox-checked
+  .ant-checkbox-inner::after {
+  border-color: #0a0c0c !important;
+}
+
+/* FORGOT PASSWORD */
+
+.login-options a {
+  color: #8c9696;
+
+  font-size: 13px;
+
+  text-decoration: none;
+
+  transition: 0.2s ease;
+}
+
+.login-options a:hover {
+  color: #ffffff;
+}
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.login-button {
+  width: 100% !important;
+  height: 48px !important;
+
+  border: none !important;
+  border-radius: 9px !important;
+
+  background: #ffffff !important;
+
+  color: #0a0c0c !important;
+
+  font-size: 15px !important;
+  font-weight: 600 !important;
+
+  box-shadow: none !important;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease !important;
+}
+
+.login-button:hover {
+  background: #e6ebeb !important;
+
+  color: #0a0c0c !important;
+
+  transform: translateY(-1px);
+}
+
+.login-button:active {
+  background: #dce1e1 !important;
+
+  transform: translateY(0);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.login-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  margin-top: 24px;
+
+  color: #626b6b;
+
+  font-size: 13px;
+}
+
+.login-footer a {
+  color: #aab3b3;
+
+  text-decoration: none;
+
+  font-weight: 500;
+
+  transition: 0.2s ease;
+}
+
+.login-footer a:hover {
+  color: #ffffff;
+}
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+
+.login-card
+  .ant-form-item-explain-error {
+  margin-top: 4px;
+
+  color: #ff6b6b !important;
+
+  font-size: 12px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 520px) {
+  .login-page {
+    padding: 20px;
+  }
+
+  .login-card {
+    width: 100%;
+
+    padding: 32px 25px;
+  }
+}
+
+@media (max-width: 380px) {
+  .login-card {
+    padding: 28px 20px;
+  }
+
+  .login-header h1 {
+    font-size: 24px;
+  }
+
+  .login-options {
+    font-size: 12px;
+  }
+}

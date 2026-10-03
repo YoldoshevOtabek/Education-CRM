@@ -1,0 +1,164 @@
+.login-page {
+    min-height: 100vh;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    background: linear-gradient(
+      135deg,
+      #eaf4ff 0%,
+      #f8fbff 50%,
+      #eef7ff 100%
+    );
+  
+    padding: 20px;
+  }
+  
+  /* CARD */
+  
+  .login-card {
+    width: 420px;
+  
+    border: none !important;
+    border-radius: 20px !important;
+  
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+  
+    padding: 25px;
+  }
+  
+  /* HEADER */
+  
+  .login-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .logo {
+    width: 60px;
+    height: 60px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    margin: 0 auto 16px;
+  
+    border-radius: 15px;
+  
+    background: #1677ff;
+    color: white;
+  
+    font-size: 20px;
+    font-weight: 700;
+  
+    box-shadow: 0 8px 20px rgba(22, 119, 255, 0.25);
+  }
+  
+  .login-header h1 {
+    margin: 0;
+  
+    color: #1f2937;
+  
+    font-size: 26px;
+    font-weight: 700;
+  }
+  
+  .login-header p {
+    margin-top: 8px;
+  
+    color: #8c8c8c;
+  
+    font-size: 14px;
+  }
+  
+  /* INPUT */
+  
+  .ant-input,
+  .ant-input-affix-wrapper {
+    border-radius: 10px !important;
+  }
+  
+  .ant-input-affix-wrapper {
+    padding: 11px 14px;
+  }
+  
+  .ant-input-affix-wrapper-focused {
+    box-shadow: 0 0 0 3px rgba(22, 119, 255, 0.1) !important;
+  }
+  
+  /* LABEL */
+  
+  .ant-form-item-label > label {
+    font-weight: 500;
+    color: #374151;
+  }
+  
+  /* OPTIONS */
+  
+  .login-options {
+    display: flex;
+  
+    justify-content: space-between;
+    align-items: center;
+  
+    margin-bottom: 25px;
+  
+    font-size: 14px;
+  }
+  
+  .login-options a {
+    color: #1677ff;
+    text-decoration: none;
+  }
+  
+  .login-options a:hover {
+    text-decoration: underline;
+  }
+  
+  /* BUTTON */
+  
+  .login-button {
+    height: 48px !important;
+  
+    border-radius: 10px !important;
+  
+    font-size: 16px;
+    font-weight: 600;
+  
+    box-shadow: 0 8px 20px rgba(22, 119, 255, 0.2);
+  }
+  
+  /* FOOTER */
+  
+  .login-footer {
+    text-align: center;
+  
+    margin-top: 5px;
+  
+    color: #8c8c8c;
+  
+    font-size: 14px;
+  }
+  
+  .login-footer a {
+    color: #1677ff;
+  
+    text-decoration: none;
+  
+    font-weight: 500;
+  }
+  
+  /* RESPONSIVE */
+  
+  @media (max-width: 500px) {
+    .login-page {
+      padding: 15px;
+    }
+  
+    .login-card {
+      width: 100%;
+      padding: 20px;
+    }
+  }

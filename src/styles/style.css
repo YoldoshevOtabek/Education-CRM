@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+.dark {
+  --bg-page: #0a0c0c;
+  --bg-surface: #111515;
+  --bg-elevated: #151a1a;
+  --bg-muted: #182020;
+  --border: #1c2222;
+  --border-strong: #252d2d;
+  --text: #f3f5f7;
+  --text-muted: #737878;
+  --text-secondary: #aeb8b8;
+  --accent: #3e90f0;
+  --active-bg: linear-gradient(270deg, #323337 50%, rgba(56, 70, 129, 0.5) 100%);
+  --active-color: #f5f6f8;
+
+  background-color: var(--bg-page);
+  color: var(--text);
+}
+
+.light {
+  --bg-page: #f5f6f8;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f0f2f5;
+  --bg-muted: #e8eef6;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --text-secondary: #4b5563;
+  --accent: #3e90f0;
+  --active-bg: linear-gradient(270deg, #e8eef8 50%, rgba(56, 70, 129, 0.12) 100%);
+  --active-color: #111827;
+
+  background-color: var(--bg-page);
+  color: var(--text);
+}
+
+.page {
+  min-height: 100%;
+  background: transparent;
+  color: var(--text);
+}
+
+.layout-sidebar,
+.layout-header,
+.page-content {
+  background-color: var(--bg-page);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.layout-sidebar {
+  background-color: var(--bg-surface);
+}
+
+.layout-sidebar i,
+.layout-sidebar span {
+  color: inherit;
+}
+
+.layout-sidebar .nav-link {
+  color: var(--text);
+  border-radius: 8px;
+}
+
+.layout-sidebar .nav-link i {
+  color: var(--text-muted);
+}
+
+.layout-sidebar .nav-link.active {
+  background: var(--active-bg);
+  color: var(--active-color);
+}
+
+.layout-sidebar .nav-link.active i {
+  color: var(--accent);
+}
+
+.layout-sidebar .toggle-icon {
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.active {
+  border-radius: 8px;
+  background: var(--active-bg);
+  color: var(--active-color);
+}
+
+.active i {
+  color: var(--accent);
+}
+
+.logOut:active {
+  border-radius: 8px;
+  background: var(--active-bg);
+}
+
+.logOut:active i {
+  color: var(--accent);
+}
+
+.mood {
+  border: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--text);
+}

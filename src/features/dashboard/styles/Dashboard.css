@@ -1,0 +1,451 @@
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+  min-height: 100vh;
+  padding: 24px;
+  background: #0a0c0c;
+  color: #f5f5f5;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.dashboard-header {
+  margin-bottom: 24px;
+}
+
+.dashboard-title {
+  color: #f5f5f5 !important;
+  margin: 0 !important;
+  font-size: 28px !important;
+}
+
+.dashboard-subtitle {
+  color: #737878 !important;
+}
+
+
+/* =========================
+   STAT CARDS
+========================= */
+
+.stat-card {
+  background: #0a0c0c !important;
+  border: 1px solid #1b2020 !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.stat-card:hover {
+  border-color: #293131 !important;
+  transform: translateY(-2px);
+}
+
+.stat-card .ant-card-body {
+  padding: 20px !important;
+}
+
+
+/* Statistic title */
+
+.stat-card .ant-statistic-title {
+  color: #737878 !important;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+
+/* Statistic number */
+
+.stat-card .ant-statistic-content {
+  color: #f5f5f5 !important;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.stat-card .ant-statistic-content-prefix {
+  margin-right: 12px;
+}
+
+
+/* =========================
+   STAT ICON
+========================= */
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  font-size: 20px;
+}
+
+
+/* Green */
+
+.stat-icon.green {
+  color: #4ade80;
+  background: #102219;
+}
+
+
+/* Blue */
+
+.stat-icon.blue {
+  color: #60a5fa;
+  background: #101c2b;
+}
+
+
+/* Purple */
+
+.stat-icon.purple {
+  color: #c084fc;
+  background: #1c1327;
+}
+
+
+/* Orange */
+
+.stat-icon.orange {
+  color: #fb923c;
+  background: #261911;
+}
+
+
+/* =========================
+   STAT FOOTER
+========================= */
+
+.stat-footer {
+  margin-top: 14px;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 12px;
+  gap: 5px;
+}
+
+.green-text {
+  color: #4ade80;
+}
+
+.blue-text {
+  color: #60a5fa;
+}
+
+.purple-text {
+  color: #c084fc;
+}
+
+.orange-text {
+  color: #fb923c;
+}
+
+
+/* =========================
+   DASHBOARD CARD
+========================= */
+
+.dashboard-card {
+  margin-top: 24px;
+
+  background: #0a0c0c !important;
+  border: 1px solid #1b2020 !important;
+  border-radius: 12px !important;
+}
+
+.dashboard-card .ant-card-head {
+  background: #0a0c0c !important;
+  border-bottom: 1px solid #1b2020 !important;
+}
+
+.dashboard-card .ant-card-body {
+  background: #0a0c0c !important;
+}
+
+
+/* =========================
+   CARD TITLE
+========================= */
+
+.card-title {
+  color: #f5f5f5;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.card-subtitle {
+  color: #737878;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 3px;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.dashboard-card .ant-table {
+  background: #0a0c0c !important;
+  color: #f5f5f5;
+}
+
+.dashboard-card .ant-table-container {
+  border: none !important;
+}
+
+.dashboard-card .ant-table-thead > tr > th {
+  background: #0a0c0c !important;
+  color: #737878 !important;
+
+  border-bottom: 1px solid #1b2020 !important;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.dashboard-card .ant-table-tbody > tr > td {
+  background: #0a0c0c !important;
+  color: #f5f5f5 !important;
+
+  border-bottom: 1px solid #151919 !important;
+}
+
+.dashboard-card
+  .ant-table-tbody
+  > tr:hover
+  > td {
+  background: #101313 !important;
+}
+
+
+/* Table empty */
+
+.dashboard-card .ant-empty-description {
+  color: #737878 !important;
+}
+
+
+/* =========================
+   STUDENT
+========================= */
+
+.student-avatar {
+  background: #172020 !important;
+  color: #4ade80 !important;
+}
+
+.student-name {
+  display: block;
+  color: #f5f5f5 !important;
+  font-weight: 600;
+}
+
+.student-phone {
+  color: #737878;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.student-phone svg {
+  margin-right: 4px;
+}
+
+
+/* =========================
+   DIRECTION TAG
+========================= */
+
+.direction-tag {
+  background: #101d1d !important;
+  border: 1px solid #164e4e !important;
+  color: #4ade80 !important;
+
+  border-radius: 6px !important;
+}
+
+
+/* =========================
+   LEVEL
+========================= */
+
+.level-text {
+  color: #a3a3a3 !important;
+  font-size: 13px;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status-active {
+  background: #102219 !important;
+  border: 1px solid #205b36 !important;
+  color: #4ade80 !important;
+
+  border-radius: 6px !important;
+}
+
+.status-warning {
+  background: #281d0f !important;
+  border: 1px solid #694b1a !important;
+  color: #fbbf24 !important;
+
+  border-radius: 6px !important;
+}
+
+
+/* =========================
+   GROUP SECTION
+========================= */
+
+.groups-section {
+  margin-top: 28px;
+}
+
+.section-title {
+  color: #f5f5f5;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.section-subtitle {
+  color: #737878;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+
+/* =========================
+   GROUP CARD
+========================= */
+
+.group-card {
+  background: #0a0c0c !important;
+  border: 1px solid #1b2020 !important;
+  border-radius: 12px !important;
+
+  transition: 0.2s;
+}
+
+.group-card:hover {
+  border-color: #293131 !important;
+  transform: translateY(-2px);
+}
+
+.group-card .ant-card-head {
+  background: #0a0c0c !important;
+  border-bottom: 1px solid #1b2020 !important;
+}
+
+.group-card .ant-card-body {
+  background: #0a0c0c !important;
+}
+
+.group-title {
+  color: #f5f5f5;
+  font-weight: 600;
+}
+
+
+/* =========================
+   GROUP ROW
+========================= */
+
+.group-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 42px;
+
+  border-bottom: 1px solid #151919;
+}
+
+.group-row:last-child {
+  border-bottom: none;
+}
+
+.group-label {
+  color: #737878 !important;
+  font-size: 13px;
+}
+
+.group-value {
+  color: #e5e5e5 !important;
+  font-size: 13px;
+}
+
+
+/* =========================
+   STUDENT COUNT
+========================= */
+
+.student-count {
+  min-width: 30px;
+  height: 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  background: #151919;
+  color: #4ade80;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.dashboard-loading {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #0a0c0c;
+}
+
+.dashboard-loading .ant-spin-dot-item {
+  background-color: #4ade80;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.dashboard-empty {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #0a0c0c;
+}
+
+.dashboard-empty .ant-empty-description {
+  color: #737878 !important;
+}

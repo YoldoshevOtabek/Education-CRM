@@ -1,0 +1,307 @@
+.group-page {
+  min-height: 100vh;
+  padding: 24px;
+  background: #0a0c0c;
+  color: #ffffff;
+}
+
+/* ================= HEADER ================= */
+
+.group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.group-title {
+  margin: 0 !important;
+  color: #ffffff !important;
+}
+
+.group-subtitle {
+  color: #a0aaaa !important;
+}
+
+/* ================= STATS ================= */
+
+.stat-card {
+  background: #111515 !important;
+  border: 1px solid #242b2b !important;
+  border-radius: 12px !important;
+}
+
+.stat-card .ant-card-body {
+  background: transparent !important;
+}
+
+.stat-card .ant-statistic-title {
+  color: #a0aaaa !important;
+}
+
+.stat-card .ant-statistic-content {
+  color: #ffffff !important;
+}
+
+.stat-card .ant-statistic-content-value {
+  color: #ffffff !important;
+}
+
+.stat-card .ant-statistic-content-prefix {
+  color: #1677ff !important;
+}
+
+/* ================= GROUP CARD ================= */
+
+.group-card {
+  height: 100%;
+  background: #111515 !important;
+  border: 1px solid #242b2b !important;
+  border-radius: 14px !important;
+}
+
+.group-card .ant-card-body {
+  background: #111515 !important;
+}
+
+/* ================= GROUP HEADER ================= */
+
+.group-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #242b2b;
+}
+
+.group-name {
+  margin: 0 !important;
+  color: #ffffff !important;
+}
+
+.group-id {
+  color: #899494 !important;
+}
+
+/* ================= INFO ================= */
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.info-label {
+  display: block;
+  color: #899494 !important;
+  font-size: 12px;
+}
+
+.info-value {
+  display: block;
+  color: #ffffff !important;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.info-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #1b2020;
+  color: #1677ff !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= TEACHER ================= */
+
+.teacher-avatar {
+  background: #252d2d !important;
+  color: #ffffff !important;
+}
+
+/* ================= DAYS ================= */
+
+.days-section {
+  padding: 15px 0;
+  border-top: 1px solid #242b2b;
+  border-bottom: 1px solid #242b2b;
+}
+
+.section-label {
+  display: block;
+  color: #899494 !important;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.group-day-tag {
+  background: #1b2020 !important;
+  border: 1px solid #303737 !important;
+  color: #ffffff !important;
+}
+
+/* ================= STUDENTS ================= */
+
+.students-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.students-count {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #ffffff !important;
+}
+
+.students-count span {
+  color: #ffffff !important;
+}
+
+.students-count svg {
+  color: #1677ff !important;
+}
+
+.student-avatar {
+  background: #252d2d !important;
+  color: #ffffff !important;
+  border-color: #111515 !important;
+}
+
+/* ================= BADGE ================= */
+
+.group-card .ant-badge-status-text {
+  color: #ffffff !important;
+}
+
+/* ================= BUTTONS ================= */
+
+.edit-btn {
+  flex: 1;
+  height: 36px;
+
+  background: #1b2020 !important;
+  border: 1px solid #303737 !important;
+  color: #ffffff !important;
+}
+
+.edit-btn span {
+  color: #ffffff !important;
+}
+
+.edit-btn:hover {
+  color: #1677ff !important;
+  border-color: #1677ff !important;
+}
+
+.delete-btn {
+  flex: 1;
+  height: 36px;
+
+  background: #1b2020 !important;
+  border: 1px solid #303737 !important;
+  color: #ff4d4f !important;
+}
+
+.delete-btn span {
+  color: #ff4d4f !important;
+}
+
+.delete-btn:hover {
+  color: #ff7875 !important;
+  border-color: #ff4d4f !important;
+}
+
+/* ================= ACTIONS ================= */
+
+.group-actions {
+  display: flex;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid #242b2b;
+}
+
+/* ================= ICON ================= */
+
+.group-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(22, 119, 255, 0.12);
+  border-radius: 10px;
+
+  color: #1677ff !important;
+  font-size: 20px;
+}
+
+/* ================= ANT TYPOGRAPHY ================= */
+
+.group-page .ant-typography {
+  color: #ffffff !important;
+}
+
+.group-page .ant-typography-secondary {
+  color: #899494 !important;
+}
+
+/* ================= BUTTON ================= */
+
+.add-group-btn {
+  background: #1677ff !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.add-group-btn span {
+  color: #ffffff !important;
+}
+
+/* ================= EMPTY ================= */
+
+.empty-card {
+  background: #111515 !important;
+  border: 1px solid #242b2b !important;
+}
+
+.empty-card .ant-empty-description {
+  color: #ffffff !important;
+}
+
+/* ================= LOADING ================= */
+
+.group-loading {
+  min-height: 400px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .group-page {
+    padding: 16px;
+  }
+
+  .group-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .add-group-btn {
+    width: 100%;
+  }
+}
