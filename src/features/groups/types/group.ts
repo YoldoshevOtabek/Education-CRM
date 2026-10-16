@@ -1,7 +1,7 @@
-export enum GroupStatus {
-  ACTIVE = "ACTIVE",
-  INACTIVE = "INACTIVE",
-}
+export type GroupStatus =
+  "ACTIVE" |
+  "INACTIVE"
+
 
 export enum LessonDay {
   MONDAY = "MONDAY",

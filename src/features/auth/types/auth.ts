@@ -3,12 +3,12 @@ export interface loginType{
     password:string
 }
 
-export enum USER_ROLE {
-    ADMIN = "ADMIN",
-    RECEPTION = "RECEPTION",
-    TEACHER = "TEACHER",
-    STUDENT = "STUDENT",
-  }
+export type USER_ROLE = 
+    "ADMIN" |
+   "RECEPTION"|
+    "TEACHER"|
+     "STUDENT"
+  
 
 
 export type LoginUser = {

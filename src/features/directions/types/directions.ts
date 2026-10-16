@@ -1,7 +1,6 @@
-export enum DirectionStatus {
-  ACTIVE = "ACTIVE",
-  INACTIVE = "INACTIVE",
-}
+export type DirectionStatus =
+  "ACTIVE" |
+  "INACTIVE"
 
 export interface Direction {
   id: number;
