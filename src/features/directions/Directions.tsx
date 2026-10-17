@@ -29,7 +29,7 @@ const { Title, Text } = Typography;
 
 const DirectionPage: React.FC = () => {
   const [directions, setDirections] = useState<Direction[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
 
   const fetchDirections = async () => {
@@ -38,9 +38,7 @@ const DirectionPage: React.FC = () => {
 
       const res = await directionService.getDirections(1, 10);
 
-      if (res.success) {
-        setDirections(res.data);
-      }
+      setDirections(Array.isArray(res?.data) ? res.data : []);
     } catch (error) {
       console.error(error);
       message.error("Yo'nalishlarni yuklashda xatolik yuz berdi");

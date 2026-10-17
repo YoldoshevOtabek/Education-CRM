@@ -56,9 +56,7 @@ export default function Group() {
 
       const res = await groupService.getGroups(1, 10);
 
-      if (res.success) {
-        setGroups(res.data);
-      }
+      setGroups(Array.isArray(res?.data) ? res.data : []);
     } catch (error) {
       console.error(error);
 
@@ -126,6 +124,12 @@ export default function Group() {
         </Button>
       </div>
 
+      {loading ? (
+        <div className="group-loading">
+          <Spin size="large" />
+        </div>
+      ) : (
+        <>
       {/* STATISTICS */}
 
       <Row gutter={[16, 16]} className="stats-row">
@@ -172,11 +176,7 @@ export default function Group() {
 
       {/* GROUPS */}
 
-      {loading ? (
-        <div className="group-loading ">
-          <Spin size="large" />
-        </div>
-      ) : groups.length === 0 ? (
+      {groups.length === 0 ? (
         <Card className="empty-card">
           <Empty description="Guruhlar mavjud emas" />
         </Card>
@@ -245,7 +245,7 @@ export default function Group() {
                       </Text>
 
                       <Text className="info-value">
-                        {group.direction.name}
+                        {group.direction?.name ?? "-"}
                       </Text>
                     </div>
                   </div>
@@ -265,7 +265,7 @@ export default function Group() {
                       </Text>
 
                       <Text className="info-value">
-                        {group.teacher.fullName}
+                        {group.teacher?.fullName ?? "-"}
                       </Text>
                     </div>
                   </div>
@@ -335,7 +335,7 @@ export default function Group() {
                     </div>
                   </div>
 
-                  {group.students.length > 0 && (
+                  {(group.students?.length ?? 0) > 0 && (
                     <Avatar.Group
                       max={{
                         count: 3,
@@ -348,12 +348,12 @@ export default function Group() {
                       {group.students.map((item) => (
                         <Tooltip
                           key={item.id}
-                          title={item.student.fullName}
+                          title={item.student?.fullName ?? ""}
                         >
                           <Avatar
                             className="student-avatar"
                           >
-                            {item.student.fullName
+                            {(item.student?.fullName ?? "?")
                               .charAt(0)
                               .toUpperCase()}
                           </Avatar>
@@ -385,6 +385,8 @@ export default function Group() {
             </Col>
           ))}
         </Row>
+      )}
+        </>
       )}
     </div>
   );

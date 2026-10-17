@@ -5,10 +5,10 @@ import {
   Empty,
   Pagination,
   Space,
-  Spin,
   Table,
   Tag,
   Typography,
+  message,
 } from "antd";
 
 import {
@@ -55,6 +55,7 @@ export default function Students() {
       }
     } catch (error) {
       console.error("Students error:", error);
+      message.error("Studentlarni yuklashda xatolik yuz berdi");
     } finally {
       setLoading(false);
     }
@@ -171,7 +172,7 @@ export default function Students() {
             borderRadius: 6,
           }}
         >
-          {level.replaceAll("_", " ")}
+          {(level ?? "").replaceAll("_", " ")}
         </Tag>
       ),
     },
@@ -349,75 +350,51 @@ export default function Students() {
           </div>
         }
       >
-        {loading ? (
-          <div
-            style={{
-              height: 400,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              background: "#0A0C0C",
-            }}
-          >
-            <Spin size="large" />
-          </div>
-        ) : students.length === 0 ? (
-          <div
-            style={{
-              padding: 80,
-              background: "#0A0C0C",
-            }}
-          >
-            <Empty
-              description={
-                <span
-                  style={{
-                    color: "#737373",
-                  }}
-                >
-                  Studentlar topilmadi
-                </span>
-              }
-            />
-          </div>
-        ) : (
-          <>
-            <Table
-              rowKey="id"
-              columns={columns}
-              dataSource={students}
-              pagination={false}
-              scroll={{
-                x: 1100,
-              }}
-              rowClassName={() => "dark-student-row"}
-            />
-
-            {/* PAGINATION */}
-
-            <div
-              style={{
-                padding: "18px 20px",
-                display: "flex",
-                justifyContent: "flex-end",
-                borderTop: "1px solid #1C2222",
-                background: "#0A0C0C",
-              }}
-            >
-              <Pagination
-                current={pagination.page}
-                pageSize={pagination.limit}
-                total={pagination.total}
-                showSizeChanger
-                pageSizeOptions={[10, 20, 50]}
-                onChange={handlePageChange}
-                showTotal={(total) =>
-                  `Jami ${total} ta`
+        <Table
+          rowKey="id"
+          columns={columns}
+          dataSource={students}
+          loading={loading}
+          pagination={false}
+          scroll={{
+            x: 1100,
+          }}
+          rowClassName={() => "dark-student-row"}
+          locale={{
+            emptyText: loading ? (
+              <span />
+            ) : (
+              <Empty
+                description={
+                  <span style={{ color: "#737373" }}>
+                    Studentlar topilmadi
+                  </span>
                 }
               />
-            </div>
-          </>
-        )}
+            ),
+          }}
+        />
+
+        <div
+          style={{
+            padding: "18px 20px",
+            display: "flex",
+            justifyContent: "flex-end",
+            borderTop: "1px solid #1C2222",
+            background: "#0A0C0C",
+          }}
+        >
+          <Pagination
+            current={pagination.page}
+            pageSize={pagination.limit}
+            total={pagination.total}
+            showSizeChanger
+            pageSizeOptions={[10, 20, 50]}
+            onChange={handlePageChange}
+            disabled={loading}
+            showTotal={(total) => `Jami ${total} ta`}
+          />
+        </div>
       </Card>
 
       {/* CUSTOM TABLE STYLE */}

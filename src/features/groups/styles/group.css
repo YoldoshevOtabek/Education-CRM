@@ -281,7 +281,7 @@
 /* ================= LOADING ================= */
 
 .group-loading {
-  min-height: 400px;
+  min-height: calc(100vh - 220px);
 
   display: flex;
   justify-content: center;

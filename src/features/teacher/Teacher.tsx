@@ -8,6 +8,7 @@ import {
   Space,
   Avatar,
   Empty,
+  message,
 } from "antd";
 import {
   UserOutlined,
@@ -25,7 +26,7 @@ import { teacherService } from "./services/teacher";
 
 const Teacher: React.FC = () => {
   const [teachers, setTeachers] = useState<TeacherType[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [search, setSearch] = useState("");
 
@@ -42,6 +43,7 @@ const Teacher: React.FC = () => {
       setTeachers(Array.isArray(res.data) ? res.data : []);
     } catch (error) {
       console.error("Teachers error:", error);
+      message.error("O'qituvchilarni yuklashda xatolik yuz berdi");
     } finally {
       setLoading(false);
     }

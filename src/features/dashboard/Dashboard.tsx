@@ -11,6 +11,7 @@ import {
   Spin,
   Typography,
   Empty,
+  message,
 } from "antd";
 
 import {
@@ -47,6 +48,7 @@ export default function Dashboard() {
         setDashboard(res);
       } catch (error) {
         console.error("Dashboard error:", error);
+        message.error("Dashboard ma'lumotlarini yuklashda xatolik yuz berdi");
       } finally {
         setLoading(false);
       }
@@ -63,7 +65,7 @@ export default function Dashboard() {
     );
   }
 
-  if (!dashboard) {
+  if (!dashboard?.data?.stats) {
     return (
       <div className="dashboard-empty">
         <Empty description="Dashboard ma'lumotlari topilmadi" />
@@ -71,8 +73,11 @@ export default function Dashboard() {
     );
   }
 
-  const { stats, recentStudents, recentGroups } =
-    dashboard.data;
+  const {
+    stats,
+    recentStudents = [],
+    recentGroups = [],
+  } = dashboard.data;
 
   const studentColumns = [
     {
@@ -106,7 +111,7 @@ export default function Dashboard() {
 
       render: (_: unknown, record: Student) => (
         <Tag className="direction-tag">
-          {record.direction.name}
+          {record.direction?.name ?? "-"}
         </Tag>
       ),
     },
@@ -118,7 +123,7 @@ export default function Dashboard() {
 
       render: (level: string) => (
         <Text className="level-text">
-          {level.replaceAll("_", " ")}
+          {(level ?? "").replaceAll("_", " ")}
         </Text>
       ),
     },
@@ -339,7 +344,7 @@ export default function Dashboard() {
                   </Text>
 
                   <Tag className="direction-tag">
-                    {group.direction.name}
+                    {group.direction?.name ?? "-"}
                   </Tag>
                 </div>
 
@@ -350,7 +355,7 @@ export default function Dashboard() {
                   </Text>
 
                   <Text className="group-value">
-                    {group.teacher.fullName}
+                    {group.teacher?.fullName ?? "-"}
                   </Text>
                 </div>
 
@@ -372,7 +377,7 @@ export default function Dashboard() {
                   </Text>
 
                   <Text className="group-value">
-                    {group.lessonDays
+                    {(group.lessonDays ?? [])
                       .map((day) => day.slice(0, 3))
                       .join(" / ")}
                   </Text>
