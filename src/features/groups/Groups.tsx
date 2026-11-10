@@ -6,7 +6,11 @@ import {
   Card,
   Col,
   Empty,
+  Form,
+  Input,
+  Modal,
   Row,
+  Select,
   Space,
   Spin,
   Statistic,
@@ -28,7 +32,11 @@ import {
 } from "@ant-design/icons";
 
 import groupService from "./services/group";
-import type { Group, LessonDay } from "./types/group";
+import type { CreateGroupDto, Group, LessonDay } from "./types/group";
+import { directionService } from "../directions/services/directions";
+import { teacherService } from "../teacher/services/teacher";
+import type { Direction } from "../directions/types/directions";
+import type { TeacherType } from "../teacher/types/teacher";
 
 import "./styles/group.css";
 
@@ -49,6 +57,11 @@ export default function Group() {
   const [loading, setLoading] = useState<boolean>(true);
 
   const [messageApi, contextHolder] = message.useMessage();
+  const [open, setOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [directionOptions, setDirectionOptions] = useState<Direction[]>([]);
+  const [teachers, setTeachers] = useState<TeacherType[]>([]);
+  const [form] = Form.useForm<CreateGroupDto>();
 
   const getGroups = async () => {
     try {
@@ -68,7 +81,36 @@ export default function Group() {
 
   useEffect(() => {
     getGroups();
+    directionService
+      .getDirections(1, 100)
+      .then((res) => setDirectionOptions(Array.isArray(res.data) ? res.data : []))
+      .catch(() => undefined);
+    teacherService
+      .getTeachers(1, 100)
+      .then((res) => setTeachers(Array.isArray(res.data) ? res.data : []))
+      .catch(() => undefined);
   }, []);
+
+  const handleAdd = async () => {
+    try {
+      const values = await form.validateFields();
+      setSaving(true);
+      await groupService.createGroup({
+        ...values,
+        directionId: Number(values.directionId),
+        teacherId: Number(values.teacherId),
+      });
+      messageApi.success("Guruh qo'shildi");
+      setOpen(false);
+      form.resetFields();
+      getGroups();
+    } catch (error) {
+      if (error && typeof error === "object" && "errorFields" in error) return;
+      messageApi.error("Guruh qo'shishda xatolik yuz berdi");
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const totalStudents = groups.reduce(
     (sum, group) => sum + group.studentsCount,
@@ -119,6 +161,7 @@ export default function Group() {
           type="primary"
           icon={<PlusOutlined />}
           className="add-group-btn"
+          onClick={() => setOpen(true)}
         >
           Yangi guruh
         </Button>
@@ -388,6 +431,77 @@ export default function Group() {
       )}
         </>
       )}
+
+      <Modal
+        title="Yangi guruh"
+        open={open}
+        onCancel={() => setOpen(false)}
+        onOk={handleAdd}
+        confirmLoading={saving}
+        okText="Saqlash"
+        destroyOnHidden
+      >
+        <Form form={form} layout="vertical">
+          <Form.Item
+            name="name"
+            label="Guruh nomi"
+            rules={[{ required: true, message: "Nomini kiriting" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="directionId"
+            label="Yo'nalish"
+            rules={[{ required: true, message: "Yo'nalishni tanlang" }]}
+          >
+            <Select
+              options={directionOptions.map((item) => ({
+                value: item.id,
+                label: item.name,
+              }))}
+            />
+          </Form.Item>
+          <Form.Item
+            name="teacherId"
+            label="O'qituvchi"
+            rules={[{ required: true, message: "O'qituvchini tanlang" }]}
+          >
+            <Select
+              options={teachers.map((item) => ({
+                value: item.id,
+                label: item.fullName,
+              }))}
+            />
+          </Form.Item>
+          <Form.Item
+            name="startDate"
+            label="Boshlanish sanasi"
+            rules={[{ required: true, message: "Sanani tanlang" }]}
+          >
+            <Input type="date" />
+          </Form.Item>
+          <Form.Item
+            name="startTime"
+            label="Dars vaqti"
+            rules={[{ required: true, message: "Vaqtni kiriting" }]}
+          >
+            <Input type="time" />
+          </Form.Item>
+          <Form.Item
+            name="lessonDays"
+            label="Dars kunlari"
+            rules={[{ required: true, message: "Kunlarni tanlang" }]}
+          >
+            <Select
+              mode="multiple"
+              options={Object.entries(dayLabels).map(([value, label]) => ({
+                value,
+                label,
+              }))}
+            />
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   );
 }

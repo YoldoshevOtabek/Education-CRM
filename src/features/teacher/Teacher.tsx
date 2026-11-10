@@ -9,6 +9,8 @@ import {
   Avatar,
   Empty,
   message,
+  Form,
+  Select,
 } from "antd";
 import {
   UserOutlined,
@@ -21,8 +23,10 @@ import {
 } from "@ant-design/icons";
 
 import "./styles/teacher.css";
-import type { TeacherType } from "./types/teacher";
+import type { CreateTeacherDto, TeacherType } from "./types/teacher";
 import { teacherService } from "./services/teacher";
+import { directionService } from "../directions/services/directions";
+import type { Direction } from "../directions/types/directions";
 
 const Teacher: React.FC = () => {
   const [teachers, setTeachers] = useState<TeacherType[]>([]);
@@ -34,6 +38,10 @@ const Teacher: React.FC = () => {
     useState<TeacherType | null>(null);
 
   const [open, setOpen] = useState(false);
+  const [addOpen, setAddOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [directions, setDirections] = useState<Direction[]>([]);
+  const [form] = Form.useForm<CreateTeacherDto>();
 
   const getTeachers = async () => {
     try {
@@ -51,7 +59,32 @@ const Teacher: React.FC = () => {
 
   useEffect(() => {
     getTeachers();
+    directionService
+      .getDirections(1, 100)
+      .then((res) => setDirections(Array.isArray(res.data) ? res.data : []))
+      .catch(() => undefined);
   }, []);
+
+  const handleAdd = async () => {
+    try {
+      const values = await form.validateFields();
+      setSaving(true);
+      await teacherService.createTeacher({
+        ...values,
+        directionId: Number(values.directionId),
+        experience: Number(values.experience),
+      });
+      message.success("O'qituvchi qo'shildi");
+      setAddOpen(false);
+      form.resetFields();
+      getTeachers();
+    } catch (error) {
+      if (error && typeof error === "object" && "errorFields" in error) return;
+      message.error("O'qituvchi qo'shishda xatolik yuz berdi");
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const filteredTeachers = teachers.filter((teacher) =>
     `${teacher.fullName} ${teacher.phone} ${teacher.direction?.name ?? ""}`
@@ -193,6 +226,7 @@ const Teacher: React.FC = () => {
           type="primary"
           className="add-teacher-btn"
           icon={<UserOutlined />}
+          onClick={() => setAddOpen(true)}
         >
           Add Teacher
         </Button>
@@ -426,6 +460,52 @@ const Teacher: React.FC = () => {
           </div>
         )}
 
+      </Modal>
+
+      <Modal
+        title="Add Teacher"
+        open={addOpen}
+        onCancel={() => setAddOpen(false)}
+        onOk={handleAdd}
+        confirmLoading={saving}
+        okText="Saqlash"
+        destroyOnHidden
+      >
+        <Form form={form} layout="vertical">
+          <Form.Item
+            name="fullName"
+            label="To'liq ism"
+            rules={[{ required: true, message: "Ismni kiriting" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="phone"
+            label="Telefon"
+            rules={[{ required: true, message: "Telefon kiriting" }]}
+          >
+            <Input placeholder="+998901234567" />
+          </Form.Item>
+          <Form.Item
+            name="directionId"
+            label="Yo'nalish"
+            rules={[{ required: true, message: "Yo'nalishni tanlang" }]}
+          >
+            <Select
+              options={directions.map((item) => ({
+                value: item.id,
+                label: item.name,
+              }))}
+            />
+          </Form.Item>
+          <Form.Item
+            name="experience"
+            label="Tajriba (yil)"
+            rules={[{ required: true, message: "Tajribani kiriting" }]}
+          >
+            <Input type="number" min={0} />
+          </Form.Item>
+        </Form>
       </Modal>
 
     </div>

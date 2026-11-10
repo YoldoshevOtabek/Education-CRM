@@ -1,5 +1,5 @@
 import http from "../../../lib/http";
-import type { ApiResponse } from "../types/directions";
+import type { ApiResponse, CreateDirectionDto } from "../types/directions";
 
 class DirectionService {
   async getDirections(
@@ -13,6 +13,11 @@ class DirectionService {
       },
     });
 
+    return res.data;
+  }
+
+  async createDirection(dto: CreateDirectionDto): Promise<ApiResponse> {
+    const res = await http.post("/directions", dto);
     return res.data;
   }
 }

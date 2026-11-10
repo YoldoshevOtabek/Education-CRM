@@ -86,6 +86,16 @@ export interface Group {
   studentsCount: number;
 }
 
+export interface CreateGroupDto {
+  name: string;
+  directionId: number;
+  teacherId: number;
+  startDate: string;
+  lessonDays: LessonDay[];
+  startTime: string;
+  status?: GroupStatus;
+}
+
 export interface Pagination {
   page: number;
   limit: number;

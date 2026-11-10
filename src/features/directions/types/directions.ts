@@ -11,6 +11,12 @@ export interface Direction {
   updatedAt: string;
 }
 
+export interface CreateDirectionDto {
+  name: string;
+  description?: string;
+  status?: DirectionStatus;
+}
+
 export interface Pagination {
   page: number;
   limit: number;

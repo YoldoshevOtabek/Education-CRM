@@ -1,5 +1,5 @@
 import http from "../../../lib/http";
-import type { ApiResponse } from "../types/teacher";
+import type { ApiResponse, CreateTeacherDto } from "../types/teacher";
 
 class TeacherService {
   async getTeachers(
@@ -13,6 +13,11 @@ class TeacherService {
       },
     });
 
+    return res.data;
+  }
+
+  async createTeacher(dto: CreateTeacherDto): Promise<ApiResponse> {
+    const res = await http.post("/teachers", dto);
     return res.data;
   }
 }

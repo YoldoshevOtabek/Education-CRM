@@ -3,10 +3,10 @@
 ========================= */
 
 .dashboard {
-  min-height: 100vh;
-  padding: 24px;
-  background: #0a0c0c;
-  color: #f5f5f5;
+  min-height: 100%;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
 }
 
 
@@ -19,13 +19,13 @@
 }
 
 .dashboard-title {
-  color: #f5f5f5 !important;
+  color: var(--text) !important;
   margin: 0 !important;
   font-size: 28px !important;
 }
 
 .dashboard-subtitle {
-  color: #737878 !important;
+  color: var(--text-muted) !important;
 }
 
 
@@ -34,8 +34,8 @@
 ========================= */
 
 .stat-card {
-  background: #0a0c0c !important;
-  border: 1px solid #1b2020 !important;
+  background: var(--bg-page) !important;
+  border: 1px solid var(--border) !important;
   border-radius: 12px !important;
   overflow: hidden;
   transition: 0.2s;
@@ -54,7 +54,7 @@
 /* Statistic title */
 
 .stat-card .ant-statistic-title {
-  color: #737878 !important;
+  color: var(--text-muted) !important;
   font-size: 14px;
   margin-bottom: 10px;
 }
@@ -63,7 +63,7 @@
 /* Statistic number */
 
 .stat-card .ant-statistic-content {
-  color: #f5f5f5 !important;
+  color: var(--text) !important;
   font-size: 28px;
   font-weight: 600;
 }
@@ -161,18 +161,18 @@
 .dashboard-card {
   margin-top: 24px;
 
-  background: #0a0c0c !important;
-  border: 1px solid #1b2020 !important;
+  background: var(--bg-page) !important;
+  border: 1px solid var(--border) !important;
   border-radius: 12px !important;
 }
 
 .dashboard-card .ant-card-head {
-  background: #0a0c0c !important;
-  border-bottom: 1px solid #1b2020 !important;
+  background: var(--bg-page) !important;
+  border-bottom: 1px solid var(--border) !important;
 }
 
 .dashboard-card .ant-card-body {
-  background: #0a0c0c !important;
+  background: var(--bg-page) !important;
 }
 
 
@@ -181,13 +181,13 @@
 ========================= */
 
 .card-title {
-  color: #f5f5f5;
+  color: var(--text);
   font-size: 16px;
   font-weight: 600;
 }
 
 .card-subtitle {
-  color: #737878;
+  color: var(--text-muted);
   font-size: 12px;
   font-weight: 400;
   margin-top: 3px;
@@ -199,8 +199,8 @@
 ========================= */
 
 .dashboard-card .ant-table {
-  background: #0a0c0c !important;
-  color: #f5f5f5;
+  background: var(--bg-page) !important;
+  color: var(--text);
 }
 
 .dashboard-card .ant-table-container {
@@ -208,20 +208,20 @@
 }
 
 .dashboard-card .ant-table-thead > tr > th {
-  background: #0a0c0c !important;
-  color: #737878 !important;
+  background: var(--bg-page) !important;
+  color: var(--text-muted) !important;
 
-  border-bottom: 1px solid #1b2020 !important;
+  border-bottom: 1px solid var(--border) !important;
 
   font-size: 11px;
   font-weight: 600;
 }
 
 .dashboard-card .ant-table-tbody > tr > td {
-  background: #0a0c0c !important;
-  color: #f5f5f5 !important;
+  background: var(--bg-page) !important;
+  color: var(--text) !important;
 
-  border-bottom: 1px solid #151919 !important;
+  border-bottom: 1px solid var(--bg-elevated) !important;
 }
 
 .dashboard-card
@@ -235,7 +235,7 @@
 /* Table empty */
 
 .dashboard-card .ant-empty-description {
-  color: #737878 !important;
+  color: var(--text-muted) !important;
 }
 
 
@@ -250,12 +250,12 @@
 
 .student-name {
   display: block;
-  color: #f5f5f5 !important;
+  color: var(--text) !important;
   font-weight: 600;
 }
 
 .student-phone {
-  color: #737878;
+  color: var(--text-muted);
   font-size: 12px;
   margin-top: 3px;
 }
@@ -318,13 +318,13 @@
 }
 
 .section-title {
-  color: #f5f5f5;
+  color: var(--text);
   font-size: 18px;
   font-weight: 600;
 }
 
 .section-subtitle {
-  color: #737878;
+  color: var(--text-muted);
   font-size: 13px;
   margin-top: 4px;
 }
@@ -335,8 +335,8 @@
 ========================= */
 
 .group-card {
-  background: #0a0c0c !important;
-  border: 1px solid #1b2020 !important;
+  background: var(--bg-page) !important;
+  border: 1px solid var(--border) !important;
   border-radius: 12px !important;
 
   transition: 0.2s;
@@ -348,16 +348,16 @@
 }
 
 .group-card .ant-card-head {
-  background: #0a0c0c !important;
-  border-bottom: 1px solid #1b2020 !important;
+  background: var(--bg-page) !important;
+  border-bottom: 1px solid var(--border) !important;
 }
 
 .group-card .ant-card-body {
-  background: #0a0c0c !important;
+  background: var(--bg-page) !important;
 }
 
 .group-title {
-  color: #f5f5f5;
+  color: var(--text);
   font-weight: 600;
 }
 
@@ -373,7 +373,7 @@
 
   min-height: 42px;
 
-  border-bottom: 1px solid #151919;
+  border-bottom: 1px solid var(--bg-elevated);
 }
 
 .group-row:last-child {
@@ -381,7 +381,7 @@
 }
 
 .group-label {
-  color: #737878 !important;
+  color: var(--text-muted) !important;
   font-size: 13px;
 }
 
@@ -405,7 +405,7 @@
 
   border-radius: 6px;
 
-  background: #151919;
+  background: var(--bg-elevated);
   color: #4ade80;
 
   font-size: 13px;
@@ -447,5 +447,5 @@
 }
 
 .dashboard-empty .ant-empty-description {
-  color: #737878 !important;
+  color: var(--text-muted) !important;
 }

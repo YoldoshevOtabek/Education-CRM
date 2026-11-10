@@ -1,8 +1,8 @@
 .teacher-page {
     min-height: 100%;
-    padding: 24px;
-    background: #0a0c0c;
-    color: #ffffff;
+    padding: 0;
+    background: transparent;
+    color: var(--text);
   }
   
   /* HEADER */
@@ -18,7 +18,7 @@
     margin: 0;
     font-size: 28px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text);
   }
   
   .teacher-header p {
@@ -51,8 +51,8 @@
   
     padding: 20px;
   
-    background: #111515;
-    border: 1px solid #1c2222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
     border-radius: 12px;
   }
   
@@ -80,15 +80,15 @@
   }
   
   .stat-card strong {
-    color: #ffffff;
+    color: var(--text);
     font-size: 23px;
   }
   
   /* TABLE */
   
   .teacher-table-card {
-    background: #111515;
-    border: 1px solid #1c2222;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
   }
@@ -100,12 +100,12 @@
   
     padding: 20px;
   
-    border-bottom: 1px solid #1c2222;
+    border-bottom: 1px solid var(--border);
   }
   
   .table-top h2 {
     margin: 0;
-    color: #ffffff;
+    color: var(--text);
     font-size: 18px;
   }
   
@@ -118,7 +118,7 @@
     width: 280px;
     height: 40px;
   
-    background: #0a0c0c !important;
+    background: var(--bg-page) !important;
     border-color: #252d2d !important;
     color: #ffffff !important;
   }
@@ -146,7 +146,7 @@
   }
   
   .teacher-name {
-    color: #ffffff;
+    color: var(--text);
     font-weight: 600;
   }
   
@@ -234,8 +234,8 @@
   /* ANT TABLE DARK */
   
   .teacher-table .ant-table {
-    background: #111515 !important;
-    color: #ffffff;
+    background: var(--bg-surface) !important;
+    color: var(--text);
   }
   
   .teacher-table .ant-table-container {
@@ -243,7 +243,7 @@
   }
   
   .teacher-table .ant-table-thead > tr > th {
-    background: #111515 !important;
+    background: var(--bg-surface) !important;
     color: #687272 !important;
     border-bottom: 1px solid #1c2222 !important;
     font-size: 12px;
@@ -251,7 +251,7 @@
   }
   
   .teacher-table .ant-table-tbody > tr > td {
-    background: #111515 !important;
+    background: var(--bg-surface) !important;
     color: #ffffff !important;
     border-bottom: 1px solid #1c2222 !important;
   }
@@ -261,7 +261,7 @@
   }
   
   .teacher-table .ant-pagination-item {
-    background: #111515 !important;
+    background: var(--bg-surface) !important;
     border-color: #252d2d !important;
   }
   
@@ -280,8 +280,8 @@
   /* MODAL */
   
   .teacher-modal .ant-modal-content {
-    background: #111515 !important;
-    color: #ffffff;
+    background: var(--bg-surface) !important;
+    color: var(--text);
     border: 1px solid #252d2d;
   }
   
@@ -290,7 +290,7 @@
   }
   
   .teacher-details {
-    color: #ffffff;
+    color: var(--text);
   }
   
   .details-header {
@@ -299,7 +299,7 @@
     gap: 16px;
   
     padding-bottom: 20px;
-    border-bottom: 1px solid #1c2222;
+    border-bottom: 1px solid var(--border);
   }
   
   .details-avatar {
@@ -309,7 +309,7 @@
   
   .details-header h2 {
     margin: 0;
-    color: #ffffff;
+    color: var(--text);
   }
   
   .details-header p {
@@ -328,8 +328,8 @@
   }
   
   .details-info > div {
-    background: #0a0c0c;
-    border: 1px solid #1c2222;
+    background: var(--bg-page);
+    border: 1px solid var(--border);
     border-radius: 8px;
     padding: 12px;
   }
@@ -342,7 +342,7 @@
   }
   
   .details-info strong {
-    color: #ffffff;
+    color: var(--text);
   }
   
   /* GROUPS */
@@ -357,7 +357,7 @@
   
   .groups-title h3 {
     margin: 0;
-    color: #ffffff;
+    color: var(--text);
   }
   
   .groups-title span {
@@ -368,8 +368,8 @@
   .group-card {
     padding: 16px;
   
-    background: #0a0c0c;
-    border: 1px solid #1c2222;
+    background: var(--bg-page);
+    border: 1px solid var(--border);
     border-radius: 9px;
   
     margin-bottom: 10px;
@@ -383,7 +383,7 @@
   
   .group-main h4 {
     margin: 0 0 5px;
-    color: #ffffff;
+    color: var(--text);
   }
   
   .group-main span {

@@ -1,5 +1,5 @@
 import http from "../../../lib/http";
-import type { ApiResponse } from "../types/group";
+import type { ApiResponse, CreateGroupDto } from "../types/group";
 
 class GroupService {
   async getGroups(
@@ -13,6 +13,11 @@ class GroupService {
       },
     });
 
+    return res.data;
+  }
+
+  async createGroup(dto: CreateGroupDto): Promise<ApiResponse> {
+    const res = await http.post("/groups", dto);
     return res.data;
   }
 }

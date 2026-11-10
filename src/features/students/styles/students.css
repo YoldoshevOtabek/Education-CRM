@@ -1,0 +1,89 @@
+.students-page {
+  min-height: 100%;
+  background: transparent;
+  color: var(--text);
+}
+
+.students-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.students-title {
+  margin: 0 !important;
+  color: var(--text) !important;
+}
+
+.students-subtitle {
+  color: var(--text-muted) !important;
+}
+
+.students-card {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px;
+}
+
+.students-card-title {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.students-card-count {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.students-name {
+  color: var(--text);
+  font-size: 14px;
+}
+
+.students-muted {
+  color: var(--text-muted);
+}
+
+.students-footer {
+  padding: 18px 20px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+
+.students-table .ant-table {
+  background: var(--bg-surface) !important;
+  color: var(--text) !important;
+}
+
+.students-table .ant-table-thead > tr > th {
+  background: var(--bg-elevated) !important;
+  color: var(--text-muted) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.students-table .ant-table-tbody > tr > td {
+  background: var(--bg-surface) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.students-table .ant-table-tbody > tr:hover > td {
+  background: var(--bg-elevated) !important;
+}
+
+.simple-page {
+  min-height: 100%;
+  color: var(--text);
+}
+
+.simple-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}

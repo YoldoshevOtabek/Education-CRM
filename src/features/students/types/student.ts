@@ -66,6 +66,21 @@ export interface Direction {
     groups: StudentGroup[];
   }
   
+  export interface CreateStudentDto {
+    fullName: string;
+    phone: string;
+    birthDate: string;
+    gender: "MALE" | "FEMALE";
+    directionId: number;
+    level:
+      | "BEGINNER"
+      | "ELEMENTARY"
+      | "INTERMEDIATE"
+      | "UPPER_INTERMEDIATE"
+      | "ADVANCED";
+    status?: "ACTIVE" | "INACTIVE" | "GRADUATED";
+  }
+
   export interface StudentResponse {
     success: boolean;
     message: string;

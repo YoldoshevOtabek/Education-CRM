@@ -38,6 +38,14 @@ export interface Student {
     groups?: Group[];
   }
   
+  export interface CreateTeacherDto {
+    fullName: string;
+    phone: string;
+    directionId: number;
+    experience: number;
+    status?: "ACTIVE" | "INACTIVE";
+  }
+
   export interface ApiResponse {
     success: boolean;
     message: string;

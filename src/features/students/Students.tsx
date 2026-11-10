@@ -1,33 +1,45 @@
 import { useEffect, useState } from "react";
 import {
   Avatar,
+  Button,
   Card,
   Empty,
+  Form,
+  Input,
+  Modal,
   Pagination,
+  Select,
   Space,
   Table,
   Tag,
   Typography,
   message,
 } from "antd";
-
 import {
   UserOutlined,
   PhoneOutlined,
   BookOutlined,
   TeamOutlined,
   CalendarOutlined,
+  PlusOutlined,
 } from "@ant-design/icons";
 
 import { studentService } from "./services/student";
-
-import type { Student } from "./types/student";
+import { directionService } from "../directions/services/directions";
+import type { CreateStudentDto, Student } from "./types/student";
+import type { Direction } from "../directions/types/directions";
+import { seedDemoStudents } from "./data/seedStudents";
+import "./styles/students.css";
 
 const { Title, Text } = Typography;
 
 export default function Students() {
   const [students, setStudents] = useState<Student[]>([]);
+  const [directions, setDirections] = useState<Direction[]>([]);
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [form] = Form.useForm<CreateStudentDto>();
 
   const [pagination, setPagination] = useState({
     page: 1,
@@ -36,20 +48,11 @@ export default function Students() {
     totalPages: 0,
   });
 
-  const getStudents = async (
-    page = 1,
-    limit = 10
-  ) => {
+  const getStudents = async (page = 1, limit = 10) => {
     try {
       setLoading(true);
-
-      const res = await studentService.getStudents(
-        page,
-        limit
-      );
-
+      const res = await studentService.getStudents(page, limit);
       setStudents(Array.isArray(res.data) ? res.data : []);
-
       if (res.pagination) {
         setPagination(res.pagination);
       }
@@ -62,289 +65,144 @@ export default function Students() {
   };
 
   useEffect(() => {
-    getStudents();
+    const load = async () => {
+      try {
+        const created = await seedDemoStudents();
+        if (created > 0) {
+          message.success(`${created} ta student qo'shildi`);
+        }
+      } catch (error) {
+        console.error("Student seed error:", error);
+      }
+
+      await getStudents();
+      directionService
+        .getDirections(1, 100)
+        .then((res) => setDirections(Array.isArray(res.data) ? res.data : []))
+        .catch(() => undefined);
+    };
+
+    load();
   }, []);
 
-  const handlePageChange = (page: number, pageSize: number) => {
-    getStudents(page, pageSize);
+  const handleAdd = async () => {
+    try {
+      const values = await form.validateFields();
+      setSaving(true);
+      await studentService.createStudent({
+        ...values,
+        directionId: Number(values.directionId),
+      });
+      message.success("Student qo'shildi");
+      setOpen(false);
+      form.resetFields();
+      getStudents(pagination.page, pagination.limit);
+    } catch (error) {
+      if (error && typeof error === "object" && "errorFields" in error) return;
+      message.error("Student qo'shishda xatolik yuz berdi");
+    } finally {
+      setSaving(false);
+    }
   };
 
   const columns = [
     {
       title: "STUDENT",
       key: "student",
-
       render: (_: unknown, record: Student) => (
         <Space size={12}>
-          <Avatar
-            size={44}
-            style={{
-              backgroundColor: "#172020",
-              color: "#4ADE80",
-            }}
-            icon={<UserOutlined />}
-          />
-
+          <Avatar size={44} icon={<UserOutlined />} />
           <div>
-            <Text
-              strong
-              style={{
-                color: "#F5F5F5",
-                fontSize: 14,
-              }}
-            >
-              {record.fullName}
-            </Text>
-
-            <div
-              style={{
-                marginTop: 3,
-              }}
-            >
-              <Text
-                style={{
-                  color: "#737373",
-                  fontSize: 12,
-                }}
-              >
-                ID: #{record.id}
-              </Text>
-            </div>
+            <div className="students-name font-semibold">{record.fullName}</div>
+            <Text className="students-muted">ID: #{record.id}</Text>
           </div>
         </Space>
       ),
     },
-
     {
       title: "PHONE",
       key: "phone",
-
       render: (_: unknown, record: Student) => (
         <Space>
-          <PhoneOutlined
-            style={{
-              color: "#737373",
-            }}
-          />
-
-          <Text
-            style={{
-              color: "#A3A3A3",
-            }}
-          >
-            {record.phone}
-          </Text>
+          <PhoneOutlined />
+          <span>{record.phone}</span>
         </Space>
       ),
     },
-
     {
       title: "DIRECTION",
       key: "direction",
-
       render: (_: unknown, record: Student) => (
-        <Tag
-          icon={<BookOutlined />}
-          style={{
-            background: "#101D1D",
-            borderColor: "#164E4E",
-            color: "#4ADE80",
-            padding: "4px 9px",
-            borderRadius: 6,
-          }}
-        >
-          {record.direction?.name}
-        </Tag>
+        <Tag icon={<BookOutlined />}>{record.direction?.name ?? "-"}</Tag>
       ),
     },
-
     {
       title: "LEVEL",
       dataIndex: "level",
       key: "level",
-
-      render: (level: string) => (
-        <Tag
-          style={{
-            background: "#151818",
-            borderColor: "#292D2D",
-            color: "#D4D4D4",
-            borderRadius: 6,
-          }}
-        >
-          {(level ?? "").replaceAll("_", " ")}
-        </Tag>
-      ),
+      render: (level: string) => <Tag>{level.replaceAll("_", " ")}</Tag>,
     },
-
     {
       title: "GENDER",
       dataIndex: "gender",
       key: "gender",
-
-      render: (gender: string) => (
-        <Text
-          style={{
-            color: "#A3A3A3",
-          }}
-        >
-          {gender === "MALE" ? "Male" : "Female"}
-        </Text>
-      ),
+      render: (gender: string) => (gender === "MALE" ? "Male" : "Female"),
     },
-
     {
       title: "GROUPS",
       key: "groups",
-
       render: (_: unknown, record: Student) => (
         <Space>
-          <TeamOutlined
-            style={{
-              color: "#737373",
-            }}
-          />
-
-          <Text
-            style={{
-              color: "#D4D4D4",
-            }}
-          >
-            {record.groups?.length || 0}
-          </Text>
+          <TeamOutlined />
+          <span>{record.groups?.length || 0}</span>
         </Space>
       ),
     },
-
     {
       title: "STATUS",
       dataIndex: "status",
       key: "status",
-
       render: (status: string) => (
-        <Tag
-          style={{
-            background:
-              status === "ACTIVE"
-                ? "#102318"
-                : "#211A10",
-
-            borderColor:
-              status === "ACTIVE"
-                ? "#245C3A"
-                : "#60451C",
-
-            color:
-              status === "ACTIVE"
-                ? "#4ADE80"
-                : "#FBBF24",
-
-            borderRadius: 6,
-            padding: "3px 9px",
-          }}
-        >
-          {status}
-        </Tag>
+        <Tag color={status === "ACTIVE" ? "green" : "gold"}>{status}</Tag>
       ),
     },
-
     {
       title: "BIRTH DATE",
       key: "birthDate",
-
       render: (_: unknown, record: Student) => (
         <Space>
-          <CalendarOutlined
-            style={{
-              color: "#737373",
-            }}
-          />
-
-          <Text
-            style={{
-              color: "#A3A3A3",
-            }}
-          >
-            {new Date(record.birthDate).toLocaleDateString(
-              "uz-UZ"
-            )}
-          </Text>
+          <CalendarOutlined />
+          <span>{new Date(record.birthDate).toLocaleDateString("uz-UZ")}</span>
         </Space>
       ),
     },
   ];
 
   return (
-    <div
-      style={{
-        minHeight: "100%",
-        background: "#0A0C0C",
-        padding: 24,
-      }}
-    >
-      {/* HEADER */}
-
-      <div
-        style={{
-          marginBottom: 24,
-        }}
-      >
-        <Title
-          level={2}
-          style={{
-            color: "#F5F5F5",
-            margin: 0,
-          }}
+    <div className="students-page">
+      <div className="students-header">
+        <div>
+          <Title level={2} className="students-title">
+            Students
+          </Title>
+          <Text className="students-subtitle">Barcha studentlar ro'yxati</Text>
+        </div>
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          onClick={() => setOpen(true)}
         >
-          Students
-        </Title>
-
-        <Text
-          style={{
-            color: "#737373",
-          }}
-        >
-          Barcha studentlar ro'yxati
-        </Text>
+          Add Student
+        </Button>
       </div>
 
-      {/* MAIN CARD */}
-
       <Card
-        style={{
-          background: "#0A0C0C",
-          border: "1px solid #1C2222",
-          borderRadius: 12,
-        }}
-        styles={{
-          body: {
-            padding: 0,
-          },
-          header: {
-            background: "#0A0C0C",
-            borderBottom: "1px solid #1C2222",
-          },
-        }}
+        className="students-card"
+        styles={{ body: { padding: 0 } }}
         title={
           <div>
-            <div
-              style={{
-                color: "#F5F5F5",
-                fontSize: 16,
-                fontWeight: 600,
-              }}
-            >
-              Studentlar
-            </div>
-
-            <div
-              style={{
-                color: "#737373",
-                fontSize: 12,
-                fontWeight: 400,
-                marginTop: 3,
-              }}
-            >
+            <div className="students-card-title">Studentlar</div>
+            <div className="students-card-count">
               Jami {pagination.total} ta student
             </div>
           </div>
@@ -356,122 +214,102 @@ export default function Students() {
           dataSource={students}
           loading={loading}
           pagination={false}
-          scroll={{
-            x: 1100,
-          }}
-          rowClassName={() => "dark-student-row"}
+          scroll={{ x: 1100 }}
+          className="students-table"
           locale={{
             emptyText: loading ? (
               <span />
             ) : (
-              <Empty
-                description={
-                  <span style={{ color: "#737373" }}>
-                    Studentlar topilmadi
-                  </span>
-                }
-              />
+              <Empty description="Studentlar topilmadi" />
             ),
           }}
         />
-
-        <div
-          style={{
-            padding: "18px 20px",
-            display: "flex",
-            justifyContent: "flex-end",
-            borderTop: "1px solid #1C2222",
-            background: "#0A0C0C",
-          }}
-        >
+        <div className="students-footer">
           <Pagination
             current={pagination.page}
             pageSize={pagination.limit}
             total={pagination.total}
             showSizeChanger
             pageSizeOptions={[10, 20, 50]}
-            onChange={handlePageChange}
+            onChange={(page, pageSize) => getStudents(page, pageSize)}
             disabled={loading}
             showTotal={(total) => `Jami ${total} ta`}
           />
         </div>
       </Card>
 
-      {/* CUSTOM TABLE STYLE */}
-
-      <style>
-        {`
-          .dark-student-row > td {
-            background: #0A0C0C !important;
-            border-bottom: 1px solid #1C2222 !important;
-          }
-
-          .dark-student-row:hover > td {
-            background: #101414 !important;
-          }
-
-          .ant-table {
-            background: #0A0C0C !important;
-            color: #F5F5F5 !important;
-          }
-
-          .ant-table-container {
-            background: #0A0C0C !important;
-          }
-
-          .ant-table-thead > tr > th {
-            background: #101414 !important;
-            color: #737373 !important;
-            border-bottom: 1px solid #1C2222 !important;
-            font-size: 11px !important;
-            font-weight: 600 !important;
-            letter-spacing: .5px;
-          }
-
-          .ant-table-tbody > tr > td {
-            background: #0A0C0C !important;
-          }
-
-          .ant-table-cell {
-            border-inline-end: none !important;
-          }
-
-          .ant-table-tbody > tr:hover > td {
-            background: #101414 !important;
-          }
-
-          .ant-pagination-item {
-            background: #101414 !important;
-            border-color: #292D2D !important;
-          }
-
-          .ant-pagination-item a {
-            color: #A3A3A3 !important;
-          }
-
-          .ant-pagination-item-active {
-            background: #102318 !important;
-            border-color: #245C3A !important;
-          }
-
-          .ant-pagination-item-active a {
-            color: #4ADE80 !important;
-          }
-
-          .ant-pagination-prev button,
-          .ant-pagination-next button {
-            background: #101414 !important;
-            color: #A3A3A3 !important;
-            border-color: #292D2D !important;
-          }
-
-          .ant-pagination-options .ant-select-selector {
-            background: #101414 !important;
-            border-color: #292D2D !important;
-            color: #A3A3A3 !important;
-          }
-        `}
-      </style>
+      <Modal
+        title="Add Student"
+        open={open}
+        onCancel={() => setOpen(false)}
+        onOk={handleAdd}
+        confirmLoading={saving}
+        okText="Saqlash"
+        destroyOnHidden
+      >
+        <Form form={form} layout="vertical">
+          <Form.Item
+            name="fullName"
+            label="To'liq ism"
+            rules={[{ required: true, message: "Ismni kiriting" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="phone"
+            label="Telefon"
+            rules={[{ required: true, message: "Telefon kiriting" }]}
+          >
+            <Input placeholder="+998901234567" />
+          </Form.Item>
+          <Form.Item
+            name="birthDate"
+            label="Tug'ilgan sana"
+            rules={[{ required: true, message: "Sanani tanlang" }]}
+          >
+            <Input type="date" />
+          </Form.Item>
+          <Form.Item
+            name="gender"
+            label="Jins"
+            rules={[{ required: true, message: "Jinsni tanlang" }]}
+          >
+            <Select
+              options={[
+                { value: "MALE", label: "Male" },
+                { value: "FEMALE", label: "Female" },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item
+            name="directionId"
+            label="Yo'nalish"
+            rules={[{ required: true, message: "Yo'nalishni tanlang" }]}
+          >
+            <Select
+              options={directions.map((item) => ({
+                value: item.id,
+                label: item.name,
+              }))}
+            />
+          </Form.Item>
+          <Form.Item
+            name="level"
+            label="Level"
+            rules={[{ required: true, message: "Levelni tanlang" }]}
+          >
+            <Select
+              options={[
+                "BEGINNER",
+                "ELEMENTARY",
+                "INTERMEDIATE",
+                "UPPER_INTERMEDIATE",
+                "ADVANCED",
+              ].map((level) => ({ value: level, label: level.replaceAll("_", " ") }))}
+            />
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   );
 }

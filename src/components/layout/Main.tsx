@@ -3,7 +3,7 @@ import Header from "./Header";
 
 export default function Main() {
   return (
-    <div className="w-full h-screen flex flex-col overflow-hidden">
+    <div className="main-shell w-full h-screen flex flex-col overflow-hidden bg-[var(--bg-page)] text-[var(--text)]">
       <Header />
       <Content />
     </div>

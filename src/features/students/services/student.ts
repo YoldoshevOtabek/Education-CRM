@@ -1,5 +1,5 @@
 import http from "../../../lib/http";
-import type { StudentResponse } from "../types/student";
+import type { CreateStudentDto, StudentResponse } from "../types/student";
 
 class StudentService {
   async getStudents(
@@ -13,6 +13,11 @@ class StudentService {
       },
     });
 
+    return res.data;
+  }
+
+  async createStudent(dto: CreateStudentDto): Promise<StudentResponse> {
+    const res = await http.post("/students", dto);
     return res.data;
   }
 }

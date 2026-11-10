@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+html,
+body,
+#root {
+  min-height: 100%;
+  background-color: var(--bg-page, #f5f6f8);
+  color: var(--text, #111827);
+}
+
 .dark {
   --bg-page: #0a0c0c;
   --bg-surface: #111515;
@@ -44,10 +52,15 @@
 
 .layout-sidebar,
 .layout-header,
-.page-content {
+.page-content,
+.main-shell {
   background-color: var(--bg-page);
   color: var(--text);
   border-color: var(--border);
+}
+
+.layout-header h1 {
+  color: var(--text);
 }
 
 .layout-sidebar {
@@ -107,4 +120,16 @@
   height: 40px;
   border-radius: 50%;
   color: var(--text);
+}
+
+.simple-page {
+  min-height: 100%;
+  color: var(--text);
+}
+
+.simple-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }

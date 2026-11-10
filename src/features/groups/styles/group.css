@@ -1,8 +1,8 @@
 .group-page {
-  min-height: 100vh;
-  padding: 24px;
-  background: #0a0c0c;
-  color: #ffffff;
+  min-height: 100%;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
 }
 
 /* ================= HEADER ================= */
@@ -16,7 +16,7 @@
 
 .group-title {
   margin: 0 !important;
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 .group-subtitle {
@@ -26,7 +26,7 @@
 /* ================= STATS ================= */
 
 .stat-card {
-  background: #111515 !important;
+  background: var(--bg-surface) !important;
   border: 1px solid #242b2b !important;
   border-radius: 12px !important;
 }
@@ -40,11 +40,11 @@
 }
 
 .stat-card .ant-statistic-content {
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 .stat-card .ant-statistic-content-value {
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 .stat-card .ant-statistic-content-prefix {
@@ -55,13 +55,13 @@
 
 .group-card {
   height: 100%;
-  background: #111515 !important;
+  background: var(--bg-surface) !important;
   border: 1px solid #242b2b !important;
   border-radius: 14px !important;
 }
 
 .group-card .ant-card-body {
-  background: #111515 !important;
+  background: var(--bg-surface) !important;
 }
 
 /* ================= GROUP HEADER ================= */
@@ -76,7 +76,7 @@
 
 .group-name {
   margin: 0 !important;
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 .group-id {
@@ -100,7 +100,7 @@
 
 .info-value {
   display: block;
-  color: #ffffff !important;
+  color: var(--text) !important;
   font-size: 14px;
   font-weight: 500;
 }
@@ -121,7 +121,7 @@
 
 .teacher-avatar {
   background: #252d2d !important;
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 /* ================= DAYS ================= */
@@ -142,7 +142,7 @@
 .group-day-tag {
   background: #1b2020 !important;
   border: 1px solid #303737 !important;
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 /* ================= STUDENTS ================= */
@@ -158,11 +158,11 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 .students-count span {
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 .students-count svg {
@@ -171,14 +171,14 @@
 
 .student-avatar {
   background: #252d2d !important;
-  color: #ffffff !important;
+  color: var(--text) !important;
   border-color: #111515 !important;
 }
 
 /* ================= BADGE ================= */
 
 .group-card .ant-badge-status-text {
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 /* ================= BUTTONS ================= */
@@ -189,11 +189,11 @@
 
   background: #1b2020 !important;
   border: 1px solid #303737 !important;
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 .edit-btn span {
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 .edit-btn:hover {
@@ -248,7 +248,7 @@
 /* ================= ANT TYPOGRAPHY ================= */
 
 .group-page .ant-typography {
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 .group-page .ant-typography-secondary {
@@ -259,23 +259,23 @@
 
 .add-group-btn {
   background: #1677ff !important;
-  color: #ffffff !important;
+  color: var(--text) !important;
   border: none !important;
 }
 
 .add-group-btn span {
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 /* ================= EMPTY ================= */
 
 .empty-card {
-  background: #111515 !important;
+  background: var(--bg-surface) !important;
   border: 1px solid #242b2b !important;
 }
 
 .empty-card .ant-empty-description {
-  color: #ffffff !important;
+  color: var(--text) !important;
 }
 
 /* ================= LOADING ================= */

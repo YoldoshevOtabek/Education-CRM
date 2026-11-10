@@ -9,6 +9,8 @@ import {
   Input,
   Spin,
   message,
+  Modal,
+  Form,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import {
@@ -19,7 +21,7 @@ import {
 } from "@ant-design/icons";
 
 import { directionService } from "./services/directions";
-import type { Direction } from "./types/directions";
+import type { CreateDirectionDto, Direction } from "./types/directions";
 
 import "./styles/direktion.css";
 
@@ -31,6 +33,9 @@ const DirectionPage: React.FC = () => {
   const [directions, setDirections] = useState<Direction[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [open, setOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [form] = Form.useForm<CreateDirectionDto>();
 
   const fetchDirections = async () => {
     try {
@@ -50,6 +55,23 @@ const DirectionPage: React.FC = () => {
   useEffect(() => {
     fetchDirections();
   }, []);
+
+  const handleAdd = async () => {
+    try {
+      const values = await form.validateFields();
+      setSaving(true);
+      await directionService.createDirection(values);
+      message.success("Yo'nalish qo'shildi");
+      setOpen(false);
+      form.resetFields();
+      fetchDirections();
+    } catch (error) {
+      if (error && typeof error === "object" && "errorFields" in error) return;
+      message.error("Yo'nalish qo'shishda xatolik yuz berdi");
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const filteredDirections = directions.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
@@ -156,6 +178,7 @@ const DirectionPage: React.FC = () => {
             type="primary"
             icon={<PlusOutlined />}
             className="add-direction-btn"
+            onClick={() => setOpen(true)}
           >
             Yo'nalish qo'shish
           </Button>
@@ -195,6 +218,29 @@ const DirectionPage: React.FC = () => {
           scroll={{ x: 900 }}
         />
       </Card>
+
+      <Modal
+        title="Yo'nalish qo'shish"
+        open={open}
+        onCancel={() => setOpen(false)}
+        onOk={handleAdd}
+        confirmLoading={saving}
+        okText="Saqlash"
+        destroyOnHidden
+      >
+        <Form form={form} layout="vertical">
+          <Form.Item
+            name="name"
+            label="Nomi"
+            rules={[{ required: true, message: "Nomini kiriting" }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item name="description" label="Tavsif">
+            <Input.TextArea rows={3} />
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   );
 };

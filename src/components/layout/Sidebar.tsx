@@ -34,6 +34,7 @@ export default function Sidebar() {
 
         <div className="flex flex-col p-4">
           {priviteRoute.map((item) => (
+            
             <NavLink
               key={item.id}
               to={item.path}
