@@ -14,6 +14,7 @@ export type USER_ROLE =
 export type LoginUser = {
     id: number;
     username: string;
+    fullName:string
     role: USER_ROLE;
     studentId: number | null;
     teacherId: number | null;
@@ -33,4 +34,10 @@ export type LoginUser = {
     message: string;
     data: LoginData;
   };
- 
+
+  export type MeResponse = {
+    success: boolean;
+    message: string;
+    data: LoginUser;
+  };
+  

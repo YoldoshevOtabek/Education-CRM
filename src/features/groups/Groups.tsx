@@ -39,6 +39,7 @@ import type { Direction } from "../directions/types/directions";
 import type { TeacherType } from "../teacher/types/teacher";
 
 import "./styles/group.css";
+import { useUser } from "../../context/UserContext";
 
 const { Title, Text } = Typography;
 
@@ -62,6 +63,7 @@ export default function Group() {
   const [directionOptions, setDirectionOptions] = useState<Direction[]>([]);
   const [teachers, setTeachers] = useState<TeacherType[]>([]);
   const [form] = Form.useForm<CreateGroupDto>();
+  const {role} = useUser()
 
   const getGroups = async () => {
     try {
@@ -157,14 +159,17 @@ export default function Group() {
           </Text>
         </div>
 
-        <Button
+        {
+          role == "ADMIN" ? 
+          <Button
           type="primary"
           icon={<PlusOutlined />}
           className="add-group-btn"
           onClick={() => setOpen(true)}
         >
           Yangi guruh
-        </Button>
+        </Button> : ""
+        }
       </div>
 
       {loading ? (

@@ -27,6 +27,7 @@ import type { CreateTeacherDto, TeacherType } from "./types/teacher";
 import { teacherService } from "./services/teacher";
 import { directionService } from "../directions/services/directions";
 import type { Direction } from "../directions/types/directions";
+import { useUser } from "../../context/UserContext";
 
 const Teacher: React.FC = () => {
   const [teachers, setTeachers] = useState<TeacherType[]>([]);
@@ -42,6 +43,8 @@ const Teacher: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [directions, setDirections] = useState<Direction[]>([]);
   const [form] = Form.useForm<CreateTeacherDto>();
+  const {role} = useUser()
+
 
   const getTeachers = async () => {
     try {
@@ -221,15 +224,17 @@ const Teacher: React.FC = () => {
             O'qituvchilar va ularning guruhlarini boshqarish
           </p>
         </div>
-
-        <Button
+        {
+          role == "ADMIN" ? <Button
           type="primary"
           className="add-teacher-btn"
           icon={<UserOutlined />}
           onClick={() => setAddOpen(true)}
         >
           Add Teacher
-        </Button>
+        </Button> : ""
+        }
+        
 
       </div>
 

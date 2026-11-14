@@ -1,17 +1,31 @@
-export const priviteRoute = [
+import { lazy } from "react";
+import type { USER_ROLE } from "../features/auth/types/auth";
+
+type PrivateRouteItem = {
+  id: number;
+  title: string;
+  path: string;
+  icon: string;
+  role: USER_ROLE[];
+  element: ReturnType<typeof lazy>;
+};
+
+export const priviteRoute: PrivateRouteItem[] = [
   {
     id: 1,
     title: "Dashboard",
     path: "/dashboard",
     icon: "bi bi-grid",
-    role:["ADMIN"]
+    role:["ADMIN","RECEPTION","TEACHER","STUDENT"],
+    element: lazy(()=> import("../features/dashboard/Dashboard"))
   },
   {
     id: 2,
     title: "Course",
     path: "/course",
     icon: "bi bi-person-lock",
-    role:["ADMIN","RECEPTION"]
+    role:["ADMIN","RECEPTION",],
+    element: lazy(()=> import("../features/course/Course"))
 
   },
   {
@@ -19,7 +33,8 @@ export const priviteRoute = [
     title: "Groups",
     path: "/groups",
     icon: "bi bi-people",
-    role:["ADMIN","RECEPTION","TEACHER"]
+    role:["ADMIN","RECEPTION","TEACHER","STUDENT"],
+    element: lazy(()=> import("../features/groups/Groups"))
 
   },
   {
@@ -27,7 +42,8 @@ export const priviteRoute = [
     title: "Directions",
     path: "/direction",
     icon: "bi bi-person",
-    role:["ADMIN","RECEPTION","TEACHER","STUDENTS"]
+    role: ["ADMIN", "RECEPTION", "TEACHER", ],
+    element: lazy(()=> import("../features/directions/Directions"))
 
   },
   {
@@ -35,7 +51,8 @@ export const priviteRoute = [
     title: "Reception",
     path: "/reception",
     icon: "bi bi-building",
-    role:["ADMIN","RECEPTION"]
+    role:["ADMIN","RECEPTION"],
+    element: lazy(()=> import("../features/reception/Reception"))
 
   },
   {
@@ -43,15 +60,16 @@ export const priviteRoute = [
     title: "Students",
     path: "/students",
     icon: "bi bi-mortarboard",
-    role:["ADMIN","RECEPTION","TEACHER"]
-
+    role:["ADMIN","RECEPTION","TEACHER","STUDENT"],
+    element: lazy(()=> import("../features/students/Students"))
   },
   {
     id: 7,
-    title: "Teacher",
-    path: "/teacher",
+    title: "Teachers",
+    path: "/teachers",
     icon: "bi bi-person-workspace",
-    role:["ADMIN","RECEPTION"]
+    role:["ADMIN","RECEPTION"],
+    element: lazy(()=> import("../features/teacher/Teacher"))
 
   },
 ];

@@ -3,11 +3,13 @@ import { Button, Card, Empty, Form, Input, Modal, message } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { directionService } from "../directions/services/directions";
 import type { CreateDirectionDto } from "../directions/types/directions";
+import { useUser } from "../../context/UserContext";
 
 export default function Course() {
   const [open, setOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   const [form] = Form.useForm<CreateDirectionDto>();
+  const {role} = useUser()
 
   useEffect(() => {
     document.title = "Course";
@@ -38,9 +40,12 @@ export default function Course() {
             Kurslarni boshqarish
           </p>
         </div>
-        <Button type="primary" icon={<PlusOutlined />} onClick={() => setOpen(true)}>
+        {
+          role == "ADMIN" ? 
+          <Button type="primary" icon={<PlusOutlined />} onClick={() => setOpen(true)}>
           Add Course
-        </Button>
+        </Button> : ""
+        }
       </div>
 
       <Card>

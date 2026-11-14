@@ -5,7 +5,7 @@ import { isAuthenticated } from "../features/auth/utils/authStorage";
 
 export default function ProtectedRoute() {
   const authenticated = isAuthenticated();
-  const { isLoading } = useMe();
+  const { isLoading ,isError} = useMe();
 
   if (!authenticated) {
     return <Navigate to="/login" replace />;
@@ -13,6 +13,9 @@ export default function ProtectedRoute() {
 
   if (isLoading) {
     return <Spinner fullscreen tip="Yuklanmoqda..." />;
+  }
+  if (isError) {
+    return <Navigate to="/login" replace />;
   }
 
   return <Outlet />;

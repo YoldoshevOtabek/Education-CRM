@@ -1,17 +1,23 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { priviteRoute } from "../../routes/Route";
 import { useState } from "react";
 import avatar from "../../assets/img/photo_2026-08-13_12-27-13.png";
 import { clearToken } from "../../features/auth/utils/authStorage";
+import { useUser } from "../../context/UserContext";
 
 export default function Sidebar() {
   const [openToggle, setOpenToggle] = useState(false);
   const navigate = useNavigate();
+  const { user, role } = useUser();
 
   const handleLogout = () => {
     clearToken();
     navigate("/login", { replace: true });
   };
+
+  const filteredRoute = priviteRoute.filter(
+    (item) => role && item.role.includes(role),
+  );
 
   return (
     <div
@@ -33,7 +39,7 @@ export default function Sidebar() {
         </div>
 
         <div className="flex flex-col p-4">
-          {priviteRoute.map((item) => (
+          {filteredRoute.map((item) => (
             
             <NavLink
               key={item.id}
@@ -72,12 +78,10 @@ export default function Sidebar() {
           {!openToggle && (
             <div>
               <span className="text-[14px] text-[#F3F5F7]">
-                Otabek Yo'ldoshev
+                {user?.fullName ?? "—"}
               </span>
               <br />
-              <Link to={"mailto:yoldoshevo2000@gmail.com"} className="text-[12px] text-gray-300">
-                otabek@gmail.com
-              </Link>
+              <span className="text-[12px] text-gray-300">{role ?? "—"}</span>
             </div>
           )}
         </div>

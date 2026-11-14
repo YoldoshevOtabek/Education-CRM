@@ -30,6 +30,7 @@ import type { CreateStudentDto, Student } from "./types/student";
 import type { Direction } from "../directions/types/directions";
 import { seedDemoStudents } from "./data/seedStudents";
 import "./styles/students.css";
+import { useUser } from "../../context/UserContext";
 
 const { Title, Text } = Typography;
 
@@ -40,6 +41,7 @@ export default function Students() {
   const [saving, setSaving] = useState(false);
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm<CreateStudentDto>();
+  const {role} = useUser()
 
   const [pagination, setPagination] = useState({
     page: 1,
@@ -187,13 +189,16 @@ export default function Students() {
           </Title>
           <Text className="students-subtitle">Barcha studentlar ro'yxati</Text>
         </div>
-        <Button
+        {
+          role == "ADMIN" ? 
+          <Button
           type="primary"
           icon={<PlusOutlined />}
           onClick={() => setOpen(true)}
         >
           Add Student
-        </Button>
+        </Button> : ""
+        }
       </div>
 
       <Card
